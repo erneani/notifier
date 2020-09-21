@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 function App() {
+  const checkNotificationsAllowed = async () => {
+    await Notification.requestPermission();
+  };
+
+  useEffect(() => {
+    checkNotificationsAllowed();
+  }, []);
+
   return (
     <Container>
       <Card>
