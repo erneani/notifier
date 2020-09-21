@@ -20,7 +20,7 @@ export function register(config?: Config) {
     const swFileName =
       process.env.NODE_ENV === "production"
         ? "service-worker.ts"
-        : "push-sw.ts";
+        : "push-sw.js";
 
     // The URL constructor is available in all browsers that support SW.
     const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
@@ -49,7 +49,7 @@ async function registerSW(swUrl: string, config?: Config) {
       if (installingWorker == null) {
         return;
       }
-      installingWorker.onstatechange = () => {
+      installingWorker.onstatechange = async () => {
         if (installingWorker.state === "installed") {
           if (navigator.serviceWorker.controller) {
             // At this point, the updated precached content has been fetched,
